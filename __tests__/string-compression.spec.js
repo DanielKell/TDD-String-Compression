@@ -21,5 +21,17 @@ describe('stringCompression', () => {
     });
   });
 
+  describe('when nothing is entered', () => {
+    it('will return null', () => {
+      const car = stringCompression("");
+      expect(car).toEqual("null");
+    });
+  });
 
+  describe('when numbers are entered instead of letters', () => {
+    it('will return instructions to insert letters instead', () => {
+      const car = stringCompression("hat420");
+      expect(car).toEqual("Please insert only letters!");
+    });
+  });
 });
