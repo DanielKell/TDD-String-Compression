@@ -24,7 +24,7 @@ describe('stringCompression', () => {
   describe('when nothing is entered', () => {
     it('will return null', () => {
       const car = stringCompression("");
-      expect(car).toEqual("null");
+      expect(car).toEqual(null);
     });
   });
 
