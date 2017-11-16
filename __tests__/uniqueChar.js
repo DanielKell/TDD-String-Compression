@@ -32,5 +32,11 @@ describe('uniqueChar', () => {
     });
   });
 
+  describe('when numbers are entered instead of letters', () => {
+    it('will return instructions to insert letters instead', () => {
+      const car = uniqueChar("abc1");
+      expect(car).toEqual("Please insert only letters!");
+    });
+  });
 
 });
