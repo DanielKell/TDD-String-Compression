@@ -18,4 +18,19 @@ describe('uniqueChar', () => {
     });
   });
 
+  describe('there are empty characters in the string', () => {
+    it('will trim these blank spaces out and return correct answer', () => {
+      const result = uniqueChar("aaaa bbb     d");
+      expect(result).toEqual("d");
+    });
+  });
+
+  describe('there is just one empty character in the string', () => {
+    it('will trim this blank space out and return correct answer', () => {
+      const result = uniqueChar("aaaa bbbd");
+      expect(result).toEqual("d");
+    });
+  });
+
+
 });
