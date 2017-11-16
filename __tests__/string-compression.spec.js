@@ -34,4 +34,19 @@ describe('stringCompression', () => {
       expect(car).toEqual("Please insert only letters!");
     });
   });
+
+    describe('when numbers are entered instead of letters', () => {
+    it('will return instructions to insert letters instead', () => {
+      const car = stringCompression("hat420");
+      expect(car).toEqual("Please insert only letters!");
+    });
+  });
+
+//     describe('when a non string is entered', () => {
+//     it('will throw an error', () => {
+//       const car = stringCompression(["1"]);
+//       expect(typeof car).toBe('string');
+//     });
+//   });
+
 });
