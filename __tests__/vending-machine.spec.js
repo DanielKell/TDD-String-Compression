@@ -40,9 +40,8 @@ const myVendingMachine = new vendingMachine;
                 name: "twoonie",
                 supply: 5,
                 value: 2
-            },{
-            total: 0
-            }]
+            }
+            ]
 
 
 //Printing the inventory
@@ -86,5 +85,21 @@ describe('refillInventory', () => {
       );
     });
   });
+});
 
+//Resupply change
+describe('resupplyChange', () => {
+
+  describe('When a user tops up the coins in the machine', () => {
+    it('should restock the number of coins input', () => {
+      const result = myVendingMachine.resupplyChange(cashInventory, 5); 
+      expect(result).toEqual([
+      {"name": "fiveCents", "supply": 7}, 
+      {"name": "tenCents", "supply": 13}, 
+      {"name": "quarter", "supply": 10}, 
+      {"name": "loonie", "supply": 8}, 
+      {"name": "twoonie", "supply": 10}]
+      );
+    });
+  });
 });
