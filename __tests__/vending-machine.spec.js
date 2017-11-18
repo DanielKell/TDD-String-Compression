@@ -44,6 +44,8 @@ const myVendingMachine = new vendingMachine;
             total: 0
             }]
 
+
+//Printing the inventory
 describe('printInventory', () => {
 
   describe('when you request the contents of the machine', () => {
@@ -56,4 +58,33 @@ describe('printInventory', () => {
       );
     });
   });
+});
+
+//Refilling the Inventory
+describe('refillInventory', () => {
+
+  describe('When a user adds supply to the machine', () => {
+    it('should restock the number of items in the machine', () => {
+      const result = myVendingMachine.refillInventory(chocolateBars, 5); 
+      expect(result).toEqual([
+        {"name": "twix", "supply": 8}, 
+        {"name": "mars", "supply": 7}, 
+        {"name": "milkyWay", "supply": 6}
+        ]
+      );
+    });
+  });
+
+    describe('When a user adds supply to the machine but the new stock would be above 10', () => {
+    it('should restock up to 10, but not more', () => {
+      const result = myVendingMachine.refillInventory(chocolateBars, 15); 
+      expect(result).toEqual([
+        {"name": "twix", "supply": 10}, 
+        {"name": "mars", "supply": 10}, 
+        {"name": "milkyWay", "supply": 10}
+        ]
+      );
+    });
+  });
+
 });
