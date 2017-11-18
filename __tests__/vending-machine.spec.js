@@ -46,10 +46,14 @@ const myVendingMachine = new vendingMachine;
 
 describe('printInventory', () => {
 
-  describe('when you input a string of letters', () => {
-    it('will return the first unique letter', () => {
+  describe('when you request the contents of the machine', () => {
+    it('will print out a list of the contents, their price, and their supply', () => {
       const result = myVendingMachine.printInventory(chocolateBars); 
-      expect(result).toEqual(2);
+      expect(result).toEqual(
+          [{"cost": 5, "name": "twix", "supply": 3}, 
+          {"cost": 4, "name": "mars", "supply": 2}, 
+          {"cost": 3, "name": "milkyWay", "supply": 1}]
+      );
     });
   });
 });
