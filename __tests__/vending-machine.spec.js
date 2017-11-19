@@ -19,7 +19,30 @@ const myVendingMachine = new vendingMachine;
                 supply: 1
                 }
         ]
-        let cashInventory = [
+        let cashInventory1 = [
+            {
+                name: "fiveCents", 
+                supply: 2,
+                value: 0.05
+            },
+            {   name: "tenCents",
+                supply: 3,
+                value: 0.10,
+            },{
+                name: "quarter",
+                supply: 5,
+                value: 0.25
+            },{
+                name: "loonie",
+                supply: 3,
+                value: 1
+            },{
+                name: "twoonie",
+                supply: 1,
+                value: 2
+            }
+            ]
+            let cashInventory2 = [
             {
                 name: "fiveCents", 
                 supply: 2,
@@ -38,11 +61,10 @@ const myVendingMachine = new vendingMachine;
                 value: 1
             },{
                 name: "twoonie",
-                supply: 5,
+                supply: 6,
                 value: 2
             }
             ]
-
 
 //Printing the inventory
 describe('printInventory', () => {
@@ -92,14 +114,28 @@ describe('resupplyChange', () => {
 
   describe('When a user tops up the coins in the machine', () => {
     it('should restock the number of coins input', () => {
-      const result = myVendingMachine.resupplyChange(cashInventory, 5); 
+      const result = myVendingMachine.resupplyChange(cashInventory1, 2); 
       expect(result).toEqual([
-      {"name": "fiveCents", "supply": 7}, 
-      {"name": "tenCents", "supply": 13}, 
-      {"name": "quarter", "supply": 10}, 
-      {"name": "loonie", "supply": 8}, 
-      {"name": "twoonie", "supply": 10}]
+      {"name": "fiveCents", "supply": 4}, 
+      {"name": "tenCents", "supply": 5}, 
+      {"name": "quarter", "supply": 7}, 
+      {"name": "loonie", "supply": 5}, 
+      {"name": "twoonie", "supply": 3}]
       );
     });
   });
+
+  describe('If there are more than 5 coins remaining in the machine', () => {
+    it('should not restock the coins yet', () => {
+      const result = myVendingMachine.resupplyChange(cashInventory2, 5); 
+      expect(result).toEqual([
+      {"name": "fiveCents", "supply": 7}, 
+      {"name": "tenCents", "supply": 8}, 
+      {"name": "quarter", "supply": 10}, 
+      {"name": "loonie", "supply": 8}, 
+      {"name": "twoonie", "supply": 6}]
+      );
+    });
+  });
+
 });
