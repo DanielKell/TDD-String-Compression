@@ -155,9 +155,16 @@ describe('dispenseItem', () => {
       expect(result).toEqual("Sorry you are $0.25 short.");
     });
   });
-});
-  //Return change as coins.
 
+  describe("When a user requests an invalid item", () => {
+    it('should return a message letting the user know', () => {
+      const result = myVendingMachine.dispenseItem("Covfefe", chocolateBars, 1.5); 
+      expect(result).toEqual("Sorry, Covfefe does not exist!");
+    });
+  });
+});
+
+//Return change as coins
 describe('sortChange', () => {
 
   describe('When a user purchases something and needs their change returned', () => {
