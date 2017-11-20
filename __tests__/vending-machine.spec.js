@@ -5,17 +5,17 @@ const myVendingMachine = new vendingMachine;
         let chocolateBars = [
             {
                 name: "twix",
-                cost: 5,
+                cost: 1.5,
                 supply: 3
                 },
             {
                 name: "mars",
-                cost: 4,
+                cost: 1.75,
                 supply: 2
                 },
             {   
                 name: "milkyWay",
-                cost: 3,
+                cost: 1.9,
                 supply: 1
                 }
         ]
@@ -73,9 +73,9 @@ describe('printInventory', () => {
     it('will print out a list of the contents, their price, and their supply', () => {
       const result = myVendingMachine.printInventory(chocolateBars); 
       expect(result).toEqual(
-          [{"cost": 5, "name": "twix", "supply": 3}, 
-          {"cost": 4, "name": "mars", "supply": 2}, 
-          {"cost": 3, "name": "milkyWay", "supply": 1}]
+          [{"cost": 1.5, "name": "twix", "supply": 3}, 
+          {"cost": 1.75, "name": "mars", "supply": 2}, 
+          {"cost": 1.9, "name": "milkyWay", "supply": 1}]
       );
     });
   });
@@ -135,6 +135,24 @@ describe('resupplyChange', () => {
       {"name": "loonie", "supply": 8}, 
       {"name": "twoonie", "supply": 6}]
       );
+    });
+  });
+});
+
+//Purchase item from machine
+describe('dispenseItem', () => {
+
+  describe('When a user picks an item from the machine and inserts payment', () => {
+    it('should dispense the item and remaining change', () => {
+      const result = myVendingMachine.dispenseItem("twix", chocolateBars, 2); 
+      expect(result).toEqual("You bought a twix for $1.5. Your change is $0.5. The vending machine now has 2 twix left.");
+    });
+  });
+
+  describe("When a user picks an item but doesn't enter enough change", () => {
+    it('should return a message letting the user know', () => {
+      const result = myVendingMachine.dispenseItem("mars", chocolateBars, 1.5); 
+      expect(result).toEqual("Sorry you are $0.25 short.");
     });
   });
 
