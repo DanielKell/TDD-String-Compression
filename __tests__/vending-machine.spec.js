@@ -167,5 +167,12 @@ describe('sortChange', () => {
     });
   });
 
+  describe('When a user purchases something and enters the exact amount of change', () => {
+    it('should let them know they entered the exact amount', () => {
+      const result = myVendingMachine.returnChange(1.90, 1.90); 
+      expect(result).toEqual("Thanks for entering the exact amount!");
+    });
+  });
+
 });
 
