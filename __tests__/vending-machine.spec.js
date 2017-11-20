@@ -67,7 +67,7 @@ const myVendingMachine = new vendingMachine;
             ]
 
 //Printing the inventory
-describe('printInventory', () => {
+describe('Printing Inventory:', () => {
 
   describe('when you request the contents of the machine', () => {
     it('will print out a list of the contents, their price, and their supply', () => {
@@ -82,7 +82,7 @@ describe('printInventory', () => {
 });
 
 //Refilling the Inventory
-describe('refillInventory', () => {
+describe('Refilling Inventory:', () => {
 
   describe('When a user adds supply to the machine', () => {
     it('should restock the number of items in the machine', () => {
@@ -110,7 +110,7 @@ describe('refillInventory', () => {
 });
 
 //Resupply change
-describe('resupplyChange', () => {
+describe('Resupplying Change:', () => {
 
   describe('When a user tops up the coins in the machine', () => {
     it('should restock the number of coins input', () => {
@@ -140,7 +140,7 @@ describe('resupplyChange', () => {
 });
 
 //Purchase item from machine
-describe('dispenseItem', () => {
+describe('Dispensing Items:', () => {
 
   describe('When a user picks an item from the machine and inserts payment', () => {
     it('should dispense the item and remaining change', () => {
@@ -164,8 +164,8 @@ describe('dispenseItem', () => {
   });
 });
 
-//Return change as coins
-describe('sortChange', () => {
+//Return change as coins, prioritizing returning as few coins as possible
+describe('Sorting and Returning Change:', () => {
 
   describe('When a user purchases something and needs their change returned', () => {
     it('should dispense the change in as few coins as possible', () => {
