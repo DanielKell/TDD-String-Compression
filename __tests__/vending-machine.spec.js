@@ -155,5 +155,17 @@ describe('dispenseItem', () => {
       expect(result).toEqual("Sorry you are $0.25 short.");
     });
   });
+});
+  //Return change as coins.
+
+describe('sortChange', () => {
+
+  describe('When a user purchases something and needs their change returned', () => {
+    it('should dispense the change in as few coins as possible', () => {
+      const result = myVendingMachine.returnChange(10, 3.10); 
+      expect(result).toEqual("Here is your change: 2, 2, 2, 0.25, 0.25, 0.25, 0.10, 0.05");
+    });
+  });
 
 });
+
