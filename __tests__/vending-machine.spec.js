@@ -2,76 +2,76 @@ const vendingMachine = require('../lib/vendingMachine.js');
 
 const myVendingMachine = new vendingMachine;
 
-        let chocolateBars = [
-            {
-                name: "twix",
-                cost: 1.5,
-                supply: 3
-                },
-            {
-                name: "mars",
-                cost: 1.75,
-                supply: 2
-                },
-            {   
-                name: "milkyWay",
-                cost: 1.9,
-                supply: 1
-                }
-        ]
-        let cashInventory1 = [
-            {
-                name: "fiveCents", 
-                supply: 2,
-                value: 0.05
-            },
-            {   name: "tenCents",
-                supply: 3,
-                value: 0.10,
-            },{
-                name: "quarter",
-                supply: 5,
-                value: 0.25
-            },{
-                name: "loonie",
-                supply: 3,
-                value: 1
-            },{
-                name: "twoonie",
-                supply: 1,
-                value: 2
-            }
-            ]
-            let cashInventory2 = [
-            {
-                name: "fiveCents", 
-                supply: 2,
-                value: 0.05
-            },
-            {   name: "tenCents",
-                supply: 8,
-                value: 0.10,
-            },{
-                name: "quarter",
-                supply: 5,
-                value: 0.25
-            },{
-                name: "loonie",
-                supply: 3,
-                value: 1
-            },{
-                name: "twoonie",
-                supply: 6,
-                value: 2
-            }
-            ]
+        // let chocolateBars = [
+        //     {
+        //         name: "twix",
+        //         cost: 1.5,
+        //         supply: 3
+        //         },
+        //     {
+        //         name: "mars",
+        //         cost: 1.75,
+        //         supply: 2
+        //         },
+        //     {   
+        //         name: "milkyWay",
+        //         cost: 1.9,
+        //         supply: 1
+        //         }
+        // ]
+        // let cashInventory1 = [
+        //     {
+        //         name: "fiveCents", 
+        //         supply: 2,
+        //         value: 0.05
+        //     },
+        //     {   name: "tenCents",
+        //         supply: 3,
+        //         value: 0.10,
+        //     },{
+        //         name: "quarter",
+        //         supply: 5,
+        //         value: 0.25
+        //     },{
+        //         name: "loonie",
+        //         supply: 3,
+        //         value: 1
+        //     },{
+        //         name: "twoonie",
+        //         supply: 1,
+        //         value: 2
+        //     }
+        //     ]
+        //     let cashInventory2 = [
+        //     {
+        //         name: "fiveCents", 
+        //         supply: 2,
+        //         value: 0.05
+        //     },
+        //     {   name: "tenCents",
+        //         supply: 8,
+        //         value: 0.10,
+        //     },{
+        //         name: "quarter",
+        //         supply: 5,
+        //         value: 0.25
+        //     },{
+        //         name: "loonie",
+        //         supply: 3,
+        //         value: 1
+        //     },{
+        //         name: "twoonie",
+        //         supply: 6,
+        //         value: 2
+        //     }
+        //     ]
 
 //Printing the inventory
 describe('Printing Inventory:', () => {
 
   describe('when you request the contents of the machine', () => {
     it('will print out a list of the contents, their price, and their supply', () => {
-      const result = myVendingMachine.printInventory(chocolateBars); 
+      const result = myVendingMachine.printInventory(); 
       expect(result).toEqual(
           [{"cost": 1.5, "name": "twix", "supply": 3}, 
           {"cost": 1.75, "name": "mars", "supply": 2}, 
@@ -86,7 +86,7 @@ describe('Refilling Inventory:', () => {
 
   describe('When a user adds supply to the machine', () => {
     it('should restock the number of items in the machine', () => {
-      const result = myVendingMachine.refillInventory(chocolateBars, 5); 
+      const result = myVendingMachine.refillInventory(5); 
       expect(result).toEqual([
         {"name": "twix", "supply": 8}, 
         {"name": "mars", "supply": 7}, 
@@ -98,7 +98,7 @@ describe('Refilling Inventory:', () => {
 
     describe('When a user adds supply to the machine but the new stock would be above 10', () => {
     it('should restock up to 10, but not more', () => {
-      const result = myVendingMachine.refillInventory(chocolateBars, 15); 
+      const result = myVendingMachine.refillInventory(15); 
       expect(result).toEqual([
         {"name": "twix", "supply": 10}, 
         {"name": "mars", "supply": 10}, 
@@ -114,7 +114,7 @@ describe('Resupplying Change:', () => {
 
   describe('When a user tops up the coins in the machine', () => {
     it('should restock the number of coins input', () => {
-      const result = myVendingMachine.resupplyChange(cashInventory1, 2); 
+      const result = myVendingMachine.resupplyChange(2); 
       expect(result).toEqual([
       {"name": "fiveCents", "supply": 4}, 
       {"name": "tenCents", "supply": 5}, 
@@ -127,7 +127,7 @@ describe('Resupplying Change:', () => {
 
   describe('If there are more than 5 coins remaining in the machine', () => {
     it('should not restock the coins yet', () => {
-      const result = myVendingMachine.resupplyChange(cashInventory2, 5); 
+      const result = myVendingMachine.resupplyChange(5); 
       expect(result).toEqual([
       {"name": "fiveCents", "supply": 7}, 
       {"name": "tenCents", "supply": 8}, 
@@ -144,21 +144,21 @@ describe('Dispensing Items:', () => {
 
   describe('When a user picks an item from the machine and inserts payment', () => {
     it('should dispense the item and remaining change', () => {
-      const result = myVendingMachine.dispenseItem("twix", chocolateBars, 2); 
+      const result = myVendingMachine.dispenseItem("twix", 2); 
       expect(result).toEqual("You bought a twix for $1.5. Your change is $0.5. The vending machine now has 2 twix left.");
     });
   });
 
   describe("When a user picks an item but doesn't enter enough change", () => {
     it('should return a message letting the user know', () => {
-      const result = myVendingMachine.dispenseItem("mars", chocolateBars, 1.5); 
+      const result = myVendingMachine.dispenseItem("mars", 1.5); 
       expect(result).toEqual("Sorry you are $0.25 short.");
     });
   });
 
   describe("When a user requests an invalid item", () => {
     it('should return a message letting the user know', () => {
-      const result = myVendingMachine.dispenseItem("Covfefe", chocolateBars, 1.5); 
+      const result = myVendingMachine.dispenseItem("Covfefe", 1.5); 
       expect(result).toEqual("Sorry, Covfefe does not exist!");
     });
   });
